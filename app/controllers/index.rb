@@ -1,3 +1,6 @@
+require 'pry'
+require 'pry-nav'
+
 get '/' do
   # Look in app/views/index.erb
   erb :index
@@ -12,8 +15,7 @@ get '/login' do
 end
 
 post '/login' do
-  @user = User.authenticate(params[:user_name], params[:password])
-  if @user != nil
+  if @user = User.authenticate(params[:user_name], params[:password])
     session[:user_name] = @user.user_name
     redirect to '/'
   else
@@ -23,8 +25,11 @@ end
 
 post '/create_user' do
   @user = User.create(params)
-  session[:user_name] = @user.user_name
-  redirect '/'
+  if @user.valid?
+    session[:user_name] = @user.user_name
+    redirect '/'
+  end
+    redirect '/login'
 end
 
 get '/signed_in?' do

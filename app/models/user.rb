@@ -3,8 +3,8 @@ require 'bcrypt'
 class User < ActiveRecord::Base
   has_many :posts
   has_many :comments
-  validates :password, presence => true
-  validates :user_name, presence => true
+  validates :password, :presence => true
+  validates :user_name, :presence => true
 
   has_secure_password
   # Remember to create a migration!
