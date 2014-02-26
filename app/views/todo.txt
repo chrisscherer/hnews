@@ -1,0 +1,13 @@
+
+
+
+<!-- PAGES TO MAKE:
+
+index
+submission view
+comment view
+sign up
+log in
+view user
+view user's submissions
+view user's comments -->
