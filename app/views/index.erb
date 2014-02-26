@@ -1,0 +1,11 @@
+<div class="container">
+  <h1>Welcome to Almost Hacker News!</h1>
+  <%unless Post.all.empty?%>
+    <% counter = 0 %>
+    <% Post.all.each do |p|%>
+      <p><%= counter += 1 %>. <a href="<%=p.url%>"><%= p.title %></a> (<%= p.url %>)</p><br>
+      <p>Created by: <%= p.author %> at <%= p.created_at %> | <%= p.comments.count%></p>
+    <% end %>
+  <%end%>
+
+</div>
