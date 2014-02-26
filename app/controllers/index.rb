@@ -10,6 +10,16 @@ post '/' do
 
 end
 
+get '/posts/new' do
+  erb :posts_new
+end
+
+post '/posts/new' do
+  @post = Post.create(params)
+
+end
+
+
 get '/login' do
   erb :login
 end
@@ -23,15 +33,11 @@ post '/login' do
   end
 end
 
-post '/create_user' do
+post '/users/create' do
   @user = User.create(params)
   if @user.valid?
     session[:user_name] = @user.user_name
     redirect '/'
   end
     redirect '/login'
-end
-
-get '/signed_in?' do
-  session[:user_name]
 end
