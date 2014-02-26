@@ -12,5 +12,21 @@ get '/login' do
 end
 
 post '/login' do
+  @user = User.authenticate(params[:user_name], params[:password])
+  if @user != nil
+    session[:user_name] = @user.user_name
+    redirect to '/'
+  else
+    body.append('<h2>Username or password is invalid</h2>')
+  end
+end
 
+post '/create_user' do
+  @user = User.create(params)
+  session[:user_name] = @user.user_name
+  redirect '/'
+end
+
+get '/signed_in?' do
+  session[:user_name]
 end
