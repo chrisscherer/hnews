@@ -1,5 +1,5 @@
 class Comment < ActiveRecord::Base
-  belongs_to_one :user
-  belongs_to_one :post
+  belongs_to :user
+  belongs_to :post
   # Remember to create a migration!
 end

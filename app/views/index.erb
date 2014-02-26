@@ -3,8 +3,9 @@
   <%unless Post.all.empty?%>
     <% counter = 0 %>
     <% Post.all.each do |p|%>
-      <p><%= counter += 1 %>. <a href="<%=p.url%>"><%= p.title %></a> (<%= p.url %>)</p><br>
-      <p>Created by: <%= p.author %> at <%= p.created_at %> | <%= p.comments.count%></p>
+      <p><%= counter += 1 %>. <a href="<%= p.url %>"><%= p.title %></a> (<%= get_domain(p) %>)</p>
+      <p>Created by: <%= p.author.user_name if p.author%> at <%= p.created_at %> | <%= p.comments.count%></p>
+      <a href='/posts/<%=p.id%>'>comments</a>
     <% end %>
   <%end%>
 

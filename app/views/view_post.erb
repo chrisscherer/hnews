@@ -1,0 +1,12 @@
+<a href="<%=@post.url%>"><h3><%=@post.title%></h3></a>
+<p>Created by: <%= @post.author.user_name if @post.author%> at <%= @post.created_at %></p>
+<h4>comment here:</h4>
+<form id="comment-form" action="/posts/<%=@post.id%>" method="post">
+  <textarea form="comment-form" name="text" cols="50" rows="15"></textarea>
+  <input type="submit">
+</form>
+
+<%@post.comments.each do |comment|%>
+  <p>by: <%= comment.user.user_name if comment.user%> at <%= comment.created_at %></p>
+  <p><%=comment.text%></p>
+<%end%>
